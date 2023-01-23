@@ -1,7 +1,80 @@
 <!DOCTYPE html>
-<html>
-<head></head>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+<style>
+
+/* both */
+html, body {
+      font-family: Arial, Helvetica, sans-serif;
+      overflow-x: hidden;
+  }
+
+  body {
+      background-color: lightgray;
+  }
+
+  section {
+      box-sizing: border-box; /*or not */
+      margin: 0 auto;
+      width: 25rem;
+      background: white;
+      padding: 30px;
+      padding-bottom: 60px;
+  }
+
+.full-width {
+    position: relative;
+/*child abosulte, negativne offser=section padding*/
+    margin: 0 -30px;
+/* add back section padding value*/
+    padding:  .25rem 30px; /* to je kao 0.25 ali se ne mora pisati ta nula nego tocka*/
+    background: black;
+    color: white;
+    font-size: 1.125rem;
+}
+
+.full-width::before, .full-width::after{
+    content: ""; /*ne moze biti nula ili broj, moraju biti navodnici ili nesto pod navodnicima*/
+    position: absolute;
+/*fill vertically*/
+    top: 0;
+    bottom: 0;
+    width: 960px; /* ukoliko je sirina premala kod resize ekrana nece biti dobro, stavimo na vecu brojku*/
+
+    right: 100%;
+    background: red;
+}
+
+
+.full-width::after{
+    width: 960px;
+/* takoder i kod ovoga ukoliko je sirina premala kod reszie ekrana nece biti dobro, stavimo vecu brojku*/
+    left: 100%;
+/*not browser prefixed*/
+    background: green;
+}
+
+
+</style>
+</head>
+
+
+
+
+
 <body>
- <p>Text</p>
+    <section>
+      <h2 class="full-width">Traka pune sirine s pseudo elementima</h2>
+      <p>Koristeci pseudo elemente :before i :after mozemo prosiriti prividnu pozadinu elementa h2 izvan &lt;section&gt; u kojem se nalazi</p>
+      <!-- ovo koristimo lower i greater to su zapravo oni tagovi < >-->
+      <p> Nazalost ovo pokrece horizontalnu traku za pomicanje, tako da moramo postaviti i html i body elemente na overflow-x:hidden.</p>
+      <p>osim ako vam nije potrebna dodatna fleksibilnost oblikovanja obje strane (razlicite boje, visine, sirine, graidjenti itd.), postoji jednostavniji pristup
+          koji koristi negativne margine i ispune.
+      </p>
+    </section>
 </body>
 </html>
